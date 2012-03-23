@@ -1,0 +1,17 @@
+--------------------------------------------------------------------
+DicomReader
+copyright    : (C) 2005, Salvatore La Bua      <slabua(at)gmail.com>
+--------------------------------------------------------------------
+
+* Introduction to the Project *
+
+-DicomReader is a simple Java DICOM files decipher.
+-It handles headers and images within as well; data (headers and pixel-value images) will be saved into ascii clear text files. A pgm version of the image files can be also provided.
+
+* Some informations about DicomReader *
+
+-DicomReader is a simple Dicom files decipher.
+-It handles headers and images within as well; data (headers and pixel-value images) will be saved into ascii clear text files. A pgm version of the image files is also provided as an option for the user.
+-The graphical user interface, based on Swing components, allow the user to choose the file names where headers and images will be saved to. When a pgm image is wanted, its name is automagically generated from the ascii text image's file name.
+-DicomReader needs a Dicom dictionary to work, from where it can read Dicom tags and take the correct action for each of them.
+-If multislices dicom files are provided, results will be saved with the same file basename selected in the user interface and a sequence number will be appended at its end keeping the original file name extention (if provided by the user).
