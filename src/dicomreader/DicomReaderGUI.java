@@ -535,7 +535,7 @@ public class DicomReaderGUI extends JFrame {
         
         
         window.setTitle(appName);
-        window.setSize(520, 300); // 420 // 320
+        window.setSize(560, 300); // 420 // 320
         window.setResizable(false);
         window.setLocationRelativeTo(null);
         // window.setAlwaysOnTop(true);
