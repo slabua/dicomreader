@@ -42,14 +42,14 @@ import javax.swing.JOptionPane;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3
+ * @version 1.3.1
  * 
  * @see LoadDict
  */
 public class DicomReader {
     
     // Application version
-    private final static String version = "1.3";
+    private final static String version = "1.3.1";
     
     // Debug flag
     private static boolean DEBUG = true;

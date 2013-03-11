@@ -62,7 +62,7 @@ import javax.swing.UIManager;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3
+ * @version 1.3.1
  * 
  * @see DicomReader
  */
@@ -320,7 +320,7 @@ public class DicomReaderGUI extends JFrame {
 				            						"Author:" + "\n\n" +
 				            						" Salvatore La Bua" +
 				            						"\n   < slabua (at) gmail.com >" +
-				            						"\n   http://dicomreader.sourceforge.net",
+				            						"\n   https://github.com/slabua/dicomreader",
 				            						"Credits",
 				            						JOptionPane.INFORMATION_MESSAGE);
 				}

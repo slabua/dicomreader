@@ -49,7 +49,7 @@ import javax.swing.JTextArea;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3
+ * @version 1.3.1
  */
 public class ShowGPL extends JFrame {
     
