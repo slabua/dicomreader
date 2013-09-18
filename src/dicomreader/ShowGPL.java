@@ -49,7 +49,7 @@ import javax.swing.JTextArea;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3.1
+ * @version 1.3.2
  */
 public class ShowGPL extends JFrame {
     
@@ -79,6 +79,7 @@ public class ShowGPL extends JFrame {
         resultArea.setLineWrap(true);
         resultArea.setWrapStyleWord(true);
         resultArea.setOpaque(false);
+        resultArea.setEditable(false);
         
         resultArea.setFont(new Font("Lucida Console", Font.PLAIN, 12));
         

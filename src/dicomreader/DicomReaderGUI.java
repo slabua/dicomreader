@@ -41,6 +41,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -53,6 +54,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 import javax.swing.UIManager;
 
 
@@ -62,7 +65,7 @@ import javax.swing.UIManager;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3.1
+ * @version 1.3.2
  * 
  * @see DicomReader
  */
@@ -262,7 +265,7 @@ public class DicomReaderGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					System.err.println("Closing...");
 				    JOptionPane.showMessageDialog(null,
-                        	"Thanks for using\n\n" + appName,
+                        	"Thank you for using\n\n" + appName,
                 			"DicomReader is closing...",
                 			JOptionPane.PLAIN_MESSAGE);
 					System.exit(0);
@@ -315,14 +318,36 @@ public class DicomReaderGUI extends JFrame {
 		aboutItem.addActionListener(
 			new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				    JOptionPane.showMessageDialog(DicomReaderGUI.this,
-				            						appName + "." + "\n\n" +
-				            						"Author:" + "\n\n" +
-				            						" Salvatore La Bua" +
-				            						"\n   < slabua (at) gmail.com >" +
-				            						"\n   https://github.com/slabua/dicomreader",
-				            						"Credits",
-				            						JOptionPane.INFORMATION_MESSAGE);
+					/*
+					JOptionPane.showMessageDialog(DicomReaderGUI.this,
+    												appName + "." + "\n\n" +
+    												"Author:" + "\n\n" +
+    												" Salvatore La Bua" +
+    												"\n   < slabua (at) gmail.com >" +
+    												"\n   https://github.com/slabua/dicomreader   ",
+    												"Credits",
+    												JOptionPane.INFORMATION_MESSAGE);
+    				*/
+					JOptionPane infoPanel = new JOptionPane();
+					JEditorPane info = new JEditorPane("text/html", "<html><body>" +
+													appName + "." + "<br><br>" +
+													"&nbsp;Salvatore La Bua" +
+													"<br />&nbsp;&nbsp;&nbsp;&lt; slabua (at) gmail.com &gt;<br />" +
+													"<br />&nbsp;&nbsp;&nbsp;<a href=\"http://www.slblabs.com/projects/dicomreader\">" +
+													"http://www.slblabs.com/projects/dicomreader</a>&nbsp;&nbsp;&nbsp;" +
+													"<br />&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/slabua/dicomreader\">" +
+													"https://github.com/slabua/dicomreader</a>&nbsp;&nbsp;&nbsp;" +
+				            						"<br /></body></html>");
+					info.addHyperlinkListener(new HyperlinkListener() {
+					    @Override
+				        public void hyperlinkUpdate(HyperlinkEvent e) {
+				            if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED))
+				            	launchURL(e.getURL().toString());
+				        }
+				    });
+					info.setOpaque(false);
+				    info.setEditable(false);
+				    infoPanel.showMessageDialog(DicomReaderGUI.this, info);
 				}
 			}
 		);
@@ -546,7 +571,7 @@ public class DicomReaderGUI extends JFrame {
                     	window.setVisible(false);
                         System.err.println("Closing...");
                         JOptionPane.showMessageDialog(null,
-                                	"Thanks for using\n\n" + appName,
+                                	"Thank you for using\n\n" + appName,
                         			"DicomReader is closing...",
                         			JOptionPane.PLAIN_MESSAGE);
                         System.exit(0);
@@ -635,5 +660,34 @@ public class DicomReaderGUI extends JFrame {
             
         } // End of itemStateChanged method
     } // End of ItemEventHandler private class
+    
+    /**
+     * The <code>launchURL</code> method handles the clic-on-a-link events by
+     * opening the URL in the browser.
+     */
+    private static void launchURL(String s) {
+        String s1 = System.getProperty("os.name");
+        try {
+            if (s1.startsWith("Windows")) {
+                Runtime.getRuntime().exec((new StringBuilder())
+                                	.append("rundll32 url.dll,FileProtocolHandler ")
+                                	.append(s).toString());
+            } else {
+                String as[] = { "chrome", "firefox", "opera", "konqueror", "epiphany",
+                				"mozilla", "netscape" };
+                String s2 = null;
+                for (int i = 0; i < as.length && s2 == null; i++)
+                    if (Runtime.getRuntime()
+                            	.exec(new String[] { "which", as[i] }).waitFor() == 0)
+                s2 = as[i];
+                if (s2 == null)
+                    throw new Exception("Could not find web browser");
+                Runtime.getRuntime().exec(new String[] { s2, s });
+            } // End of if-else block
+        } catch (Exception exception) {
+            System.out
+                    .println("An error occured while trying to open the web browser!\n");
+        } // End of try-catch block
+    } // End of launchURL method
     
 } // End of DicomReaderGUI class

@@ -49,7 +49,7 @@ import javax.swing.JOptionPane;
 public class DicomReader {
     
     // Application version
-    private final static String version = "1.3.1";
+    private final static String version = "1.3.2";
     
     // Debug flag
     private static boolean DEBUG = true;
