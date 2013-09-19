@@ -23,7 +23,7 @@ package dicomreader;
 
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -36,6 +36,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -53,7 +54,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
+//import javax.swing.border.BevelBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.UIManager;
@@ -65,7 +66,7 @@ import javax.swing.UIManager;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3.2
+ * @version 1.3.2-1
  * 
  * @see DicomReader
  */
@@ -328,26 +329,40 @@ public class DicomReaderGUI extends JFrame {
     												"Credits",
     												JOptionPane.INFORMATION_MESSAGE);
     				*/
-					JOptionPane infoPanel = new JOptionPane();
-					JEditorPane info = new JEditorPane("text/html", "<html><body>" +
-													appName + "." + "<br><br>" +
-													"&nbsp;Salvatore La Bua" +
-													"<br />&nbsp;&nbsp;&nbsp;&lt; slabua (at) gmail.com &gt;<br />" +
-													"<br />&nbsp;&nbsp;&nbsp;<a href=\"http://www.slblabs.com/projects/dicomreader\">" +
-													"http://www.slblabs.com/projects/dicomreader</a>&nbsp;&nbsp;&nbsp;" +
-													"<br />&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/slabua/dicomreader\">" +
-													"https://github.com/slabua/dicomreader</a>&nbsp;&nbsp;&nbsp;" +
-				            						"<br /></body></html>");
-					info.addHyperlinkListener(new HyperlinkListener() {
+					String info = "<html><body>" +
+								appName + "." + "<br><br>" +
+								"Author:<br><br>" +
+								"&nbsp;Salvatore La Bua" +
+								"<br />&nbsp;&nbsp;&nbsp;&lt; slabua (at) gmail.com &gt;<br />" +
+								"<br />&nbsp;&nbsp;&nbsp;<a href=\"http://www.slblabs.com/projects/dicomreader\">" +
+								"http://www.slblabs.com/projects/dicomreader</a>&nbsp;&nbsp;&nbsp;" +
+								"<br />&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/slabua/dicomreader\">" +
+								"https://github.com/slabua/dicomreader</a>&nbsp;&nbsp;&nbsp;" +
+								"<br /></body></html>";
+					
+					JEditorPane infoPane = new JEditorPane("text/html", info);
+					
+					infoPane.addHyperlinkListener(new HyperlinkListener() {
+						
 					    @Override
 				        public void hyperlinkUpdate(HyperlinkEvent e) {
-				            if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED))
-				            	launchURL(e.getURL().toString());
+					    	if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED))
+								try {
+									java.awt.Desktop.getDesktop().browse(java.net.URI.create(e.getURL().toString()));
+								} catch (IOException e1) {
+									e1.printStackTrace();
+								}
 				        }
 				    });
-					info.setOpaque(false);
-				    info.setEditable(false);
-				    infoPanel.showMessageDialog(DicomReaderGUI.this, info);
+					
+					infoPane.setText(info);
+					infoPane.setOpaque(false);
+				    infoPane.setEditable(false);
+				    infoPane.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
+				    //infoPane.setFont(new Font("Lucida Console", Font.PLAIN, 12));
+				    infoPane.setFont(new JLabel().getFont());
+				    
+				    JOptionPane.showMessageDialog(DicomReaderGUI.this, infoPane);
 				}
 			}
 		);
@@ -617,7 +632,7 @@ public class DicomReaderGUI extends JFrame {
                       
      	           } else {
      	              callDecode();
-     	           } // End if-else block
+     	           } // End of if-else block
      	           
      	       } // End of if-else block
      		   
@@ -660,34 +675,5 @@ public class DicomReaderGUI extends JFrame {
             
         } // End of itemStateChanged method
     } // End of ItemEventHandler private class
-    
-    /**
-     * The <code>launchURL</code> method handles the clic-on-a-link events by
-     * opening the URL in the browser.
-     */
-    private static void launchURL(String s) {
-        String s1 = System.getProperty("os.name");
-        try {
-            if (s1.startsWith("Windows")) {
-                Runtime.getRuntime().exec((new StringBuilder())
-                                	.append("rundll32 url.dll,FileProtocolHandler ")
-                                	.append(s).toString());
-            } else {
-                String as[] = { "chrome", "firefox", "opera", "konqueror", "epiphany",
-                				"mozilla", "netscape" };
-                String s2 = null;
-                for (int i = 0; i < as.length && s2 == null; i++)
-                    if (Runtime.getRuntime()
-                            	.exec(new String[] { "which", as[i] }).waitFor() == 0)
-                s2 = as[i];
-                if (s2 == null)
-                    throw new Exception("Could not find web browser");
-                Runtime.getRuntime().exec(new String[] { s2, s });
-            } // End of if-else block
-        } catch (Exception exception) {
-            System.out
-                    .println("An error occured while trying to open the web browser!\n");
-        } // End of try-catch block
-    } // End of launchURL method
     
 } // End of DicomReaderGUI class

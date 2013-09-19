@@ -38,7 +38,7 @@ import javax.swing.JOptionPane;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3.1
+ * @version 1.3.2-1
  * 
  * @see DicomReader
  */

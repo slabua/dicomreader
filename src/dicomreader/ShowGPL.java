@@ -49,14 +49,14 @@ import javax.swing.JTextArea;
  * 
  * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
  * 
- * @version 1.3.2
+ * @version 1.3.2-1
  */
 public class ShowGPL extends JFrame {
     
     private final static String version = DicomReader.getAppVersion();
     private final static String appName = "DicomReader " + version + " - Dicom file decoder";
     
-    private static BufferedReader license = null;
+    //private static BufferedReader license = null;
     
     private JTextArea resultArea;
     
@@ -81,7 +81,8 @@ public class ShowGPL extends JFrame {
         resultArea.setOpaque(false);
         resultArea.setEditable(false);
         
-        resultArea.setFont(new Font("Lucida Console", Font.PLAIN, 12));
+        //resultArea.setFont(new Font("Lucida Console", Font.PLAIN, 12));
+        //resultArea.setFont(new JLabel().getFont());
         
         JScrollPane scrollPanel = new JScrollPane(resultArea);
         resultPanel.add(scrollPanel);
