@@ -362,7 +362,9 @@ public class DicomReaderGUI extends JFrame {
 				    //infoPane.setFont(new Font("Lucida Console", Font.PLAIN, 12));
 				    infoPane.setFont(new JLabel().getFont());
 				    
-				    JOptionPane.showMessageDialog(DicomReaderGUI.this, infoPane);
+				    JOptionPane.showMessageDialog(DicomReaderGUI.this, infoPane,
+													"Credits",
+													JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		);
