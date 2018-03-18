@@ -3,7 +3,7 @@
 *--------------------------------------------------------------------------*
 *                                                                          *
 * created on   : 20 mar 2005                                               *
-* copyright    : (C) 2005, Salvatore La Bua      <SLB(at)Shogoki.it>       *
+* copyright    : (C) 2005, Salvatore La Bua      <SLaBua(at)SLBLabs.com>   *
 * copyright    : (C) 2005, Calogero Crapanzano   <calosan(at)libero.it>    *
 * copyright    : (C) 2005, Pietro Amato          <lovedstone(at)libero.it> *
 *                                                                          * 
