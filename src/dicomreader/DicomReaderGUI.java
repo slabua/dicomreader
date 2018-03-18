@@ -314,8 +314,8 @@ public class DicomReaderGUI extends JFrame {
 		JSeparator separator = new JSeparator();
 		helpMenu.add(separator);
 		
-		JMenuItem aboutItem = new JMenuItem("DicomReader Info");
-		aboutItem.setMnemonic('I');
+		JMenuItem aboutItem = new JMenuItem("Credits");
+		aboutItem.setMnemonic('C');
 		aboutItem.addActionListener(
 			new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -423,9 +423,9 @@ public class DicomReaderGUI extends JFrame {
     } // End of getFileName method
     
     /**
-     * The <code>setDicomFileName</code> method sets the Dicom file to analyze.
+     * The <code>setDicomFileName</code> method sets the Dicom file to analyse.
      * 
-     * @return dicomF <code>File</code> Dicom file to analyze.
+     * @return dicomF <code>File</code> Dicom file to analyse.
      */
     private File setDicomFileName() {
         dicomF = this.openFileName();
@@ -510,7 +510,7 @@ public class DicomReaderGUI extends JFrame {
     } // End of enableDecodeButton method
     
     /**
-     * The <code>callDecode</code> method takes care of initializing the file
+     * The <code>callDecode</code> method takes care of initialising the file
      *  names that will be used in the decode process, sets some variables and
      *  calls the <code>decode</code> method.
      */
