@@ -2,7 +2,7 @@
 [![License: GPLv3][GPLimg]][GPLurl]
 [![GitHub Release][GHRimg]][GHRurl]
 
-Copyright : (C) 2005 Salvatore La Bua [slabua(at)gmail.com](mailto:slabua@gmail.com)  
+Copyright (C) 2005 Salvatore La Bua [slabua(at)gmail.com](mailto:slabua@gmail.com)  
 http://www.slblabs.com/projects/dicomreader  
 http://github.com/slabua/dicomreader  
 
@@ -60,7 +60,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 [R00]: http://dx.doi.org/10.1007/978-3-540-71457-6_48
 [R01]: https://goo.gl/ZL4QGx
 [R02]: https://goo.gl/um4tbP
-[S01]: https://goo.gl/cFGwFn
-[S02]: https://goo.gl/ajZghn
-[S03]: https://goo.gl/gjuE4e
+[S01]: https://goo.gl/TGu9E7
+[S02]: https://goo.gl/zPc3sG
+[S03]: https://goo.gl/hAUW6X
 
