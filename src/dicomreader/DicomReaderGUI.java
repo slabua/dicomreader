@@ -61,12 +61,12 @@ import javax.swing.UIManager;
 
 
 /**
- * <code>DicomReaderGUI</code> class is the application's graphic user interface.<br />
+ * <code>DicomReaderGUI</code> class is the application's graphic user interface.
  *  It refers to the <code>DicomReader</code> class.
  * 
- * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
+ * @author Salvatore La Bua    slabua (at) gmail.com
  * 
- * @version 1.3.2-1
+ * @version 1.3.3
  * 
  * @see DicomReader
  */
@@ -166,7 +166,7 @@ public class DicomReaderGUI extends JFrame {
         JPanel dicomPanel = new JPanel();
         dicomPanel.setLayout(new BorderLayout());
         
-        JLabel dicomLabel = new JLabel("Dicom file:");
+        JLabel dicomLabel = new JLabel("Dicom input file:");
         dicomPanel.add(dicomLabel, BorderLayout.NORTH);
         
         JPanel dicomName = new JPanel();
@@ -188,7 +188,7 @@ public class DicomReaderGUI extends JFrame {
         JPanel headersPanel = new JPanel();
         headersPanel.setLayout(new BorderLayout());
         
-        JLabel headersLabel = new JLabel("Headers file:");
+        JLabel headersLabel = new JLabel("Headers output file:");
         headersPanel.add(headersLabel, BorderLayout.NORTH);
         
         JPanel headersName = new JPanel();
@@ -210,7 +210,7 @@ public class DicomReaderGUI extends JFrame {
         JPanel asciiPanel = new JPanel();
         asciiPanel.setLayout(new BorderLayout());
         
-        JLabel asciiLabel = new JLabel("ASCII image file:");
+        JLabel asciiLabel = new JLabel("ASCII image output file:");
         asciiPanel.add(asciiLabel, BorderLayout.NORTH);
         
         JPanel asciiName = new JPanel();
@@ -499,6 +499,7 @@ public class DicomReaderGUI extends JFrame {
      * 
      * @deprecated It isn't still in use.
      */
+    /*
     private void enableButtons() {
         if (setDicomName && setHeadersName && setAsciiName) {
             pgmCheckBox.setEnabled(true);
@@ -508,6 +509,7 @@ public class DicomReaderGUI extends JFrame {
             decodeButton.setEnabled(false);
         } // End of if-else block
     } // End of enableDecodeButton method
+    */
     
     /**
      * The <code>callDecode</code> method takes care of initialising the file
@@ -538,7 +540,7 @@ public class DicomReaderGUI extends JFrame {
 		if (savePGM) {
 		    dicom = new DicomReader(dicomF, headersF, asciiF, imageF);
 		} else {
-		   dicom = new DicomReader(dicomF, headersF, asciiF);
+		    dicom = new DicomReader(dicomF, headersF, asciiF);
 		} // End of if-else block
 		dicom.decode();
 		
@@ -550,14 +552,14 @@ public class DicomReaderGUI extends JFrame {
 		if (dicom.getImageSaved())
 		    message += "PGM image file saved at:\n " + imageFileName;
 		
-		System.out.println(message);
+		System.out.println("\n" + message);
 		JOptionPane.showMessageDialog(DicomReaderGUI.this, message, "Results",
 		        								JOptionPane.INFORMATION_MESSAGE);
 		
     } // End of callDecode method
     
     /**
-     * This is the <i>main</i> method of the application.<br />
+     * This is the <i>main</i> method of the application.
      * It sets the window's dimensions and shows it in the center of the screen.
      */
     public static void main(String[] args) {

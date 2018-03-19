@@ -36,20 +36,20 @@ import javax.swing.JOptionPane;
 
 /**
  * The <code>DicomReader</code> class decodes Dicom files writing headers file
- *  and images files.<br />
+ *  and images files.
  * The image(s) files is simply composed of ascii pixel values ordered by rows
  *  and columns as in a trivial image.
  * 
- * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
+ * @author Salvatore La Bua    slabua (at) gmail.com
  * 
- * @version 1.3.2-1
+ * @version 1.3.3
  * 
  * @see LoadDict
  */
 public class DicomReader {
     
     // Application version
-    private final static String version = "1.3.2-1";
+    private final static String version = "1.3.3";
     
     // Debug flag
     private static boolean DEBUG = true;
@@ -91,7 +91,7 @@ public class DicomReader {
 	
 	
 	/**
-	 * Four parametrs <code>DicomReader</code> class constructor.<br />
+	 * Four parametrs <code>DicomReader</code> class constructor.
 	 * The constructor simply initializes variables' values to file names passed
 	 *  as parameters to the class.
 	 * 
@@ -108,7 +108,7 @@ public class DicomReader {
 	} // End of DicomReader(dfn, hfn, afn, ifn) constructor
 	
 	/**
-	 * Three parametrs <code>DicomReader</code> class constructor.<br />
+	 * Three parametrs <code>DicomReader</code> class constructor.
 	 * The constructor simply initializes variables' values to file names passed
 	 *  as parameters to the class.
 	 * 
@@ -124,7 +124,7 @@ public class DicomReader {
 	} // End of DicomReader(dfn, hfn, afn, ifn) constructor
 	
 	/**
-	 * The <code>decode</code> method is the main method of the class.<br />
+	 * The <code>decode</code> method is the main method of the class.
 	 * It will use other private methods to do the more simplest functions such
 	 *  as checks, informations reading/writing...
 	 */
@@ -198,7 +198,7 @@ public class DicomReader {
 		    	    dicomFile.read(buff8);
 		    	    
 		    	    content = tagID + ": " + tagVR + ": " + tagName + ": (" + sValue + ")";
-                    
+		    	    
 		    	    headersFile.write(content + "\n");
                 	
                     tagID = this.nextTagID(dicomFile);
@@ -307,12 +307,13 @@ public class DicomReader {
     
     /**
      * The <code>getFileName</code> method shows a file chooser dialog window
-     *  to select the file we wish to analyze.
+     *  to select the file we wish to analyse.
      * 
-     * @return fileName <code>File</code> File name to analyze.
+     * @return fileName <code>File</code> File name to analyse.
      * 
      * @deprecated It isn't still in use.
      */
+    /*
     private File getFileName() {
         File fileName = null;
         
@@ -328,6 +329,7 @@ public class DicomReader {
         return fileName;
         
     } // End of getFileName method
+    */
     
     /**
      * The <code>chechDICM</code> method checks if the chosen file has the "DICM"
@@ -362,8 +364,8 @@ public class DicomReader {
                 while ((tempBuff = buff1[0]) != 'M') {
                     if (counter == 132) {
                         isDicomFile = false;
-                        String errorString = "This file not seems to be a Dicom file." + "\n\n" +
-                        					 "DICM string not found at 132nd byte.";
+                        String errorString = "This file does not seem to be a Dicom file." + "\n\n" +
+                        					 "DICM string not found at byte 0x84.";
                     	System.err.println(errorString);
                     	JOptionPane.showMessageDialog(null, errorString, "Wrong File", JOptionPane.ERROR_MESSAGE);
                     	System.exit(-1);
@@ -387,8 +389,8 @@ public class DicomReader {
                 
                 if (!dict.isContained(tagID)) {
                     isDicomFile = false;
-                    String errorString = "This file not seems to be a Dicom file." + "\n\n" +
-                    					 "DICM stringless Dicom file:" + "\n" +
+                    String errorString = "This file does not seem to be a Dicom file." + "\n\n" +
+                    					 "DICM stringless file:" + "\n" +
                     					 "First tag is not a valid Dicom tag.";
                 	System.err.println(errorString);
                 	JOptionPane.showMessageDialog(null, errorString, "Wrong File", JOptionPane.ERROR_MESSAGE);
@@ -554,7 +556,7 @@ public class DicomReader {
     
     /**
      * The <code>storeImageParam</code> method sets the <code>Image</code>
-     *  object's fields.<br />
+     *  object's fields.
      * It will contain some informations to store the image, such as dimensions,
      *  color depth and so on.
      * 
@@ -723,7 +725,7 @@ public class DicomReader {
     } // end of saveImage() method
     
     /**
-     * The method returns the <code>isDicomFile</code> variable value.<br />
+     * The method returns the <code>isDicomFile</code> variable value.
      * <code>True</code> is returned if the file to convert is recognized as a
      *  valid Dicom file.
      * 
@@ -734,7 +736,7 @@ public class DicomReader {
     } // End of getIsDicomFile method
     
     /**
-     * The method returns the <code>headersSaved</code> variable value.<br />
+     * The method returns the <code>headersSaved</code> variable value.
      * <code>True</code> is returned if the headers file is stored.
      * 
      * @return headersSaved <code>boolean</code> <code>headersSaved</code> variable value.
@@ -744,7 +746,7 @@ public class DicomReader {
     } // End of getHeadersSaved method
     
     /**
-     * The method returns the <code>asciiSaved</code> variable value.<br />
+     * The method returns the <code>asciiSaved</code> variable value.
      * <code>True</code> is returned if the ascii image file is stored.
      * 
      * @return asciiSaved <code>boolean</code> <code>asciiSaved</code> variable value.
@@ -754,7 +756,7 @@ public class DicomReader {
     } // End of getAsciiSaved method
     
     /**
-     * The method returns the <code>imageSaved</code> variable value.<br />
+     * The method returns the <code>imageSaved</code> variable value.
      * <code>True</code> is returned if the pgm image file is stored.
      * 
      * @return imageSaved <code>boolean</code> <code>imageSaved</code> variable value.
@@ -764,7 +766,7 @@ public class DicomReader {
     } // End of getImageSaved method
     
     /**
-     * The method returns the <code>version</code> variable value.<br />
+     * The method returns the <code>version</code> variable value.
      * 
      * @return version <code>String</code> Application's version number.
      */
@@ -837,17 +839,17 @@ public class DicomReader {
 		if (dicomF != null && headersF != null && asciiF != null) {
             decode(dicomF, headersF, asciiF, imageF);
 		} else {
-		    String message = "Missed parameters:" + "\n" +
+		    String message = "Missing parameters:" + "\n" +
 		    				 " File dfn, File hfn, File afn, File ifn";
 		    System.err.println(message);
-		    JOptionPane.showMessageDialog(null, message, "Missed parameters",
+		    JOptionPane.showMessageDialog(null, message, "Missing parameters",
 		            								JOptionPane.ERROR_MESSAGE);
 		    System.exit(-1);
 		} // End of if-else block
     } // End of main method
     
     /**
-     * The <code>Image</code> private class is an utility class.<br />
+     * The <code>Image</code> private class is an utility class.
      * Its object will contain needed values to the correct image storing process.
      */
     private class Image {

@@ -47,9 +47,9 @@ import javax.swing.JTextArea;
  * The <code>ShowGPL</code> class is called by the <code>DicomReaderGUI</code>
  *  class to show the GNU General Public License to the end user.
  * 
- * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
+ * @author Salvatore La Bua    slabua (at) gmail.com
  * 
- * @version 1.3.2-1
+ * @version 1.3.3
  */
 public class ShowGPL extends JFrame {
     
@@ -131,7 +131,7 @@ public class ShowGPL extends JFrame {
     
     /**
      * The <code>display</code> method sets the window's dimensions and shows it
-     *  in the center of the screen.<br />
+     *  in the center of the screen.
      * It executes the <code>showResult</code> method to show the GPL license file.
      */
     public static void display() {

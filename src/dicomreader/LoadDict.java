@@ -32,13 +32,13 @@ import javax.swing.JOptionPane;
 
 
 /**
- * The <code>LoadDict</code> class opens the Dicom tags dictionary.<br />
+ * The <code>LoadDict</code> class opens the Dicom tags dictionary.
  *  It will be needed by the <code>DicomReader</code> class operations on Dicom
  *  tags.
  * 
- * @author Salvatore La Bua    <i>< slabua (at) gmail.com ></i>
+ * @author Salvatore La Bua    slabua (at) gmail.com
  * 
- * @version 1.3.2-1
+ * @version 1.3.3
  * 
  * @see DicomReader
  */
@@ -56,7 +56,7 @@ public class LoadDict {
         try {
             
             BufferedReader dictFile = new BufferedReader(
-                    new InputStreamReader(getClass().getResourceAsStream("/resources/dict/Dicom.dic")));
+                    new InputStreamReader(getClass().getResourceAsStream("data/resources/dict/Dicom.dic")));
             
             String line = null;
             StringTokenizer tkn;
