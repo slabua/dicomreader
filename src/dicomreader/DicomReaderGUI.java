@@ -175,7 +175,7 @@ public class DicomReaderGUI extends JFrame {
         dicomField = new JTextField(25);
         dicomName.add(dicomField, BorderLayout.CENTER);
         
-        browseDicomButton = new JButton("1 Browse...");
+        browseDicomButton = new JButton("1 Open...");
         browseDicomButton.setMnemonic(KeyEvent.VK_1);
         browseDicomButton.addActionListener(handler);
         
@@ -197,7 +197,7 @@ public class DicomReaderGUI extends JFrame {
         headersField = new JTextField(25);
         headersName.add(headersField, BorderLayout.CENTER);
         
-        browseHeadersButton = new JButton("2 Browse...");
+        browseHeadersButton = new JButton("2 Save to");
         browseHeadersButton.setMnemonic(KeyEvent.VK_2);
         browseHeadersButton.addActionListener(handler);
         
@@ -219,7 +219,7 @@ public class DicomReaderGUI extends JFrame {
         asciiField = new JTextField(25);
         asciiName.add(asciiField, BorderLayout.CENTER);
         
-        browseAsciiButton = new JButton("3 Browse...");
+        browseAsciiButton = new JButton("3 Save to");
         browseAsciiButton.setMnemonic(KeyEvent.VK_3);
         browseAsciiButton.addActionListener(handler);
         
