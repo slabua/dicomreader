@@ -6,6 +6,16 @@ Copyright (C) 2005 Salvatore La Bua [slabua(at)gmail.com](mailto:slabua@gmail.co
 http://www.slblabs.com/projects/dicomreader  
 http://github.com/slabua/dicomreader  
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
+
+- [Introduction to the Project](#introduction-to-the-project)
+- [Resources](#resources)
+- [LICENSE](#license)
+- [Screenshots](#screenshots)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Introduction to the Project
 
 - DicomReader is a simple Java DICOM files decipher and it has been developed
