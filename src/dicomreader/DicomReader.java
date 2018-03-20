@@ -345,7 +345,7 @@ public class DicomReader {
         try {
             
             // Reading first four bytes of the Dicom file to decode.
-            dicomFile.read(buff4);
+        	dicomFile.read(buff4);
             tempBuff = (((0x000000ff & buff4[3]) << 32) |
                     	((0x000000ff & buff4[2]) << 16) |
 		   		   		((0x000000ff & buff4[1]) <<  8) |
@@ -353,33 +353,31 @@ public class DicomReader {
             dicomFile.close();
             dicomFile = new FileInputStream(dicomF);
             
-            // If tempBuff contains a zero data value, we can have a Dicom file
+            // If tempBuff contains a zero data value, we can either have a Dicom file
             //  with "DICM" header (in this case first 128 bytes of the file are
-            //  all zeros), either we can have a file that isn't a Dicom file.
+            //  all zeros), or a file that is not a Dicom file at all.
             if (tempBuff == 0) {
-                int counter = 0;
-                dicomFile.read(buff1);
-                counter++;
+            	// Skipping the initial 128+4 bytes
+            	//  (reserved for comments and DICM string)
+            	for (int i = 0; i < 132; i++) {
+                	dicomFile.read(buff1);
+                	//System.err.println(buff1[0]);
+                }
+            	if ((tempBuff = buff1[0]) != 'M') {
+                	isDicomFile = false;
+                    String errorString = "This file does not seem to be a Dicom file." + "\n\n" +
+                    					 "DICM string not found at byte 0x84.";
+                	System.err.println(errorString);
+                	JOptionPane.showMessageDialog(null, errorString, "Wrong File", JOptionPane.ERROR_MESSAGE);
+                	System.exit(-1);
+                }
                 
-                while ((tempBuff = buff1[0]) != 'M') {
-                    if (counter == 132) {
-                        isDicomFile = false;
-                        String errorString = "This file does not seem to be a Dicom file." + "\n\n" +
-                        					 "DICM string not found at byte 0x84.";
-                    	System.err.println(errorString);
-                    	JOptionPane.showMessageDialog(null, errorString, "Wrong File", JOptionPane.ERROR_MESSAGE);
-                    	System.exit(-1);
-                    	
-                    } // End of if block
-                    
-                    dicomFile.read(buff1);
-                    counter++;
-                } // End of while block
-                
-            // If first four bytes aren't zeros, we can have a Dicom "DICM"
-            //  headerless file (in this case we assume first four bytes identify
-            //  a valid Dicom tag),  either we can have a file that isn't a Dicom
-            //  file.
+            // If first four bytes aren't zeros, we can either have a Dicom "DICM"
+            //  headless file (in this case we assume first four bytes identify
+            //   a valid Dicom tag),
+            //	or a Dicom file with a comment in the first 128 bytes before the
+            //	 DICM string,
+            //	or else a file that is not a Dicom file at all.
             } else {
                 LoadDict dict = new LoadDict();
                 
@@ -388,13 +386,28 @@ public class DicomReader {
                 dicomFile = new FileInputStream(dicomF);
                 
                 if (!dict.isContained(tagID)) {
-                    isDicomFile = false;
                     String errorString = "This file does not seem to be a Dicom file." + "\n\n" +
                     					 "DICM stringless file:" + "\n" +
                     					 "First tag is not a valid Dicom tag.";
                 	System.err.println(errorString);
-                	JOptionPane.showMessageDialog(null, errorString, "Wrong File", JOptionPane.ERROR_MESSAGE);
-                	System.exit(-1);
+                	System.err.println("\n" + "The file may contain comments in the first 128" +
+                					   " bytes." + "\n" +
+                					   "Testing..." + "\n");
+                	
+                	// Skipping the initial 128+4 bytes
+                	//  (reserved for comments and DICM string)
+                	for (int i = 0; i < 132; i++) {
+                    	dicomFile.read(buff1);
+                    	//System.err.println(buff1[0]);
+                    }
+                	if ((tempBuff = buff1[0]) != 'M') {
+                    	isDicomFile = false;
+                        errorString = "This file does not seem to be a Dicom file." + "\n\n" +
+                        					 "DICM string not found at byte 0x84.";
+                    	System.err.println(errorString);
+                    	JOptionPane.showMessageDialog(null, errorString, "Wrong File", JOptionPane.ERROR_MESSAGE);
+                    	System.exit(-1);
+                    }
                 } // End of if block
                 
             } // End of if-else block
@@ -429,6 +442,7 @@ public class DicomReader {
             
             // Extracting group from first two bytes of tagID
             dicomFile.read(buff2);
+            
             tempBuff = (((0x000000ff & buff2[1]) << 8) |
                     	 (0x000000ff & buff2[0]));
             
