@@ -333,7 +333,8 @@ public class DicomReaderGUI extends JFrame {
 								appName + "." + "<br><br>" +
 								"Author:<br><br>" +
 								"&nbsp;Salvatore La Bua" +
-								"<br />&nbsp;&nbsp;&nbsp;&lt; slabua (at) gmail.com &gt;<br />" +
+								"<br />&nbsp;&nbsp;&nbsp;<a href=\"mailto:slabua@gmail.com?subject=DicomReader\">" +
+								"slabua@gmail.com</a>&nbsp;&nbsp;&nbsp;<br />" +
 								"<br />&nbsp;&nbsp;&nbsp;<a href=\"http://www.slblabs.com/projects/dicomreader\">" +
 								"http://www.slblabs.com/projects/dicomreader</a>&nbsp;&nbsp;&nbsp;" +
 								"<br />&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/slabua/dicomreader\">" +
