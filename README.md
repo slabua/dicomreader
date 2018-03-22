@@ -14,6 +14,9 @@ http://github.com/slabua/dicomreader
 - [Resources](#resources)
 - [LICENSE](#license)
 - [Screenshots](#screenshots)
+  - [DicomReader main interface](#dicomreader-main-interface)
+  - [Credits](#credits)
+  - [Closing](#closing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Introduction to the Project
@@ -57,10 +60,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Screenshots
 
+### DicomReader main interface
 ![main-1.3.3][S01]
 
+### Credits
 ![info-1.3.3][S02]
 
+### Closing
 ![exit-1.3.3][S03]
 
 [GPLimg]: https://img.shields.io/badge/License-GPLv3-blue.svg
