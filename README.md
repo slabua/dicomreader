@@ -21,10 +21,10 @@ http://github.com/slabua/dicomreader
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 ## Introduction to the Project
 
-- DicomReader is a simple Java DICOM files decipher and it has been developed
+- DicomReader is a simple Java DICOM files reader and it has been developed
   as part of the [Volumetric Bias Correction][R00] paperwork.
 - DicomReader handles headers as well as images contained in the Dicom files:
-  - Data (headers and pixel-value images) are saved into ascii plain text files.
+  - Data (headers and pixel-value images) is saved into ascii plain text files.
   - A pgm version of the image files is provided as an option for the user.
 - The graphical user interface, based on Swing components, allows the user to
   choose the file names where headers and images will be saved to.  
